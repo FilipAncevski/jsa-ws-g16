@@ -1,4 +1,3 @@
-const { fail } = require("assert");
 const fs = require("fs");
 
 console.log("Hello world!");
