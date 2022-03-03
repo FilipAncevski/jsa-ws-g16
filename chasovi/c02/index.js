@@ -88,6 +88,14 @@ api.get("/users", async (req, res) => {
   }
 });
 
+api.post("/users", async (req, res) => {
+  //add the person sent
+});
+
+api.delete("/users/:index", async (req, res) => {
+  // delete person by index number
+});
+
 api.listen(10000, (err) => {
   if (err) return console.log(err);
   console.log("Server is live");
