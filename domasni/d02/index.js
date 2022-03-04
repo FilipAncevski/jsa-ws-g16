@@ -86,7 +86,7 @@ const updatePerson = async (index, firstName, lastName) => {
     });
     writeFile(newData, "./data");
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -114,20 +114,21 @@ app.get("/users", async (req, res) => {
 
 app.post("/users", async (req, res) => {
   try {
-    await addPerson("Tomche", "Tomchevki");
+    await addPerson(req.body.firstName, req.body.lastName);
     return res.status(201).send("Person added successfully");
   } catch (error) {
     return res.status(500).send(error);
   }
+  // res.status(200).send(req.body);
 });
 
 app.put("/users/:index", async (req, res) => {
   try {
-    const index = +req.params.index;
-    await updatePerson(index, "Nikola", "Nikolovski");
+    const index = Number(req.params.index);
+    await updatePerson(index, req.body.firstName, req.body.lastName);
     return res.status(200).send("Person updated successfully");
   } catch (error) {
     console.log(error);
-    return res.status(500).send(error);
+    return res.status(500).send("Internal server error");
   }
 });

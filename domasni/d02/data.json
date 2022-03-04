@@ -1,18 +1,1 @@
-[
-    {
-        "firstName": "Filip",
-        "lastName": "Filipovski"
-    },
-    {
-        "firstName": "Dime",
-        "lastName": "Dimovski"
-    },
-    {
-        "firstName": "Stefan",
-        "lastName": "Stefanovski"
-    },
-    {
-        "firstName": "Miki",
-        "lastName": "Mikanovski"
-    }
-]
+[{"firstName":"Filip","lastName":"Filipovski"},{"firstName":"Dime","lastName":"Dimovski"},{"firstName":"Stefan","lastName":"Stefanovski"},{"firstName":"Miki","lastName":"Mikanovski"},{"firstName":"Tomche","lastName":"Tomchevki"},{"firstName":"Bojan","lastName":"afasfsa"},{"firstName":"Bojan","lastName":"afasfsa"},{"firstName":"Pero","lastName":"Perovski"}]
