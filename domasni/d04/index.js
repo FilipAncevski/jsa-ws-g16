@@ -1,3 +1,4 @@
+const { get } = require("./pkg/config");
 require("./pkg/db");
 
 const express = require("express");
@@ -20,6 +21,6 @@ app.put("/api/games/:id", putGame);
 app.patch("/api/games/:id", patchGame);
 app.delete("/api/games/:id", deleteGame);
 
-app.listen(10000, () => {
-  console.log("Server is live");
+app.listen(get("services").port, () => {
+  console.log(`Server is live on ${get("services").port}`);
 });

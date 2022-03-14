@@ -1,5 +1,5 @@
 {
-  "name": "d04",
+  "name": "d05",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.3",
-    "mongoose": "^6.2.5",
+    "mongoose": "^6.2.6",
     "node-input-validator": "^4.5.0"
   }
 }
