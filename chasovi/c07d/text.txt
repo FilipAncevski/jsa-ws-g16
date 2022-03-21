@@ -1,0 +1,2 @@
+You can specify audience and/or issuer as well, which is highly recommended for security purposes =  issuer: 'http://issuer' 
+CRUD update, data ne treba da se prefrla vo objekt {data} X, data OK

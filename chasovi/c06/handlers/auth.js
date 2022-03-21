@@ -1,6 +1,8 @@
 const { validate, Account, AccountLogin } = require("../pkg/account/validate");
 const account = require("../pkg/account");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const { get } = require("../pkg/config");
 
 const login = async (req, res) => {
   try {
@@ -18,7 +20,15 @@ const login = async (req, res) => {
         error: "Wrong password",
       };
     }
-    return res.status(200).send(acc);
+    const data = {
+      full_name: acc.full_name,
+      email: acc.email,
+      id: acc._id,
+      eat: new Date().getTime() / 1000 + 7 * 24 * 60 * 60,
+    };
+
+    const token = jwt.sign(data, get("service").jwt_key);
+    return res.status(200).send(token);
   } catch (error) {
     console.log(error);
     return res.status(error.code).send(error.error);
@@ -43,7 +53,19 @@ const register = async (req, res) => {
   }
 };
 const refreshToken = async (req, res) => {
-  return res.send("OK");
+  try {
+    let data = req.user;
+    data = {
+      ...data,
+      eat: new Date().getTime() / 1000 + 7 * 24 * 60 * 60,
+    };
+
+    const token = jwt.sign(data, get("service").jwt_key);
+    return res.status(200).send(token);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send("Internal Server Error");
+  }
 };
 const forgotPassword = async (req, res) => {
   return res.send("OK");
