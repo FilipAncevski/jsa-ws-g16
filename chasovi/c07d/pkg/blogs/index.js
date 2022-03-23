@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const Blog = mongoose.model(
   "blogs",
   {
-    user_id: String,
     title: String,
     content: String,
   },
