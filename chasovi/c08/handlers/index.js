@@ -47,7 +47,7 @@ const listImages = async (req, res) => {
     let userDirPath = `${__dirname}/../images`;
     let filePath = `${userDirPath}/${userDir}`;
     const files = fs.readdirSync(filePath);
-    return res.status(200).send({ files });
+    return res.status(200).send(files);
   } catch (error) {
     console.log(error);
     return res.status(500).send("Internal Server Error");
@@ -58,7 +58,7 @@ const listUsers = async (req, res) => {
   try {
     let userDirPath = `${__dirname}/../images`;
     const users = fs.readdirSync(userDirPath);
-    return res.status(200).send({ users });
+    return res.status(200).send(users);
   } catch (error) {
     console.log(error);
     return res.status(500).send("Internal Server Error");
@@ -73,7 +73,7 @@ const remove = async (req, res) => {
 
     if (fs.existsSync(filePath)) {
       fs.rmSync(filePath);
-      return res.status(201).send("");
+      return res.status(204).send("");
     }
   } catch (error) {
     console.log(error);
