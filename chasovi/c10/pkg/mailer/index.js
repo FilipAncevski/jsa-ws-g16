@@ -26,17 +26,3 @@ const sendMail = async (to, subject, message) => {
 module.exports = {
   sendMail,
 };
-
-// mg.messages
-//   .create(, {
-//     from: "filip.anchevski1@gmail.com",
-//     to: "filip.anchevski1@gmail.com",
-//     subject: "Trying out mailgun, bam bam bam",
-//     html: "<h1>Bam bam bam to you, bakaaaaa</h1>",
-//   })
-//   .then((res) => {
-//     console.log("Successfully sended mail", res);
-//   })
-//   .catch((err) => {
-//     console.log("Error", err);
-//   });
