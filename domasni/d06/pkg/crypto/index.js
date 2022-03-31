@@ -23,7 +23,8 @@ const CACHEDES = {};
 // Valjda ako go imam vo svoja baza mozam da go sporedam
 
 const listCoins = async () => {
-  if (COINCACHE.data) {
+  let now = new Date().getTime() / 1000;
+  if (COINCACHE.data && CACHE[coin].timestamp + 10000 > now) {
     return COINCACHE.data.data;
   }
 
@@ -51,8 +52,8 @@ const getPrice = async (coin) => {
   }
 
   try {
-    let data = await fetch(`https://api.coingecko.com/api/v3/coins/${coin}`);
-    data = await data.json();
+    let res = await fetch(`https://api.coingecko.com/api/v3/coins/${coin}`);
+    let data = await res.json();
 
     CACHE[coin] = {
       timestamp: new Date().getTime() / 1000,
@@ -70,8 +71,8 @@ const getDescriptions = async (desc) => {
   }
 
   try {
-    let data = await fetch(`https://api.coingecko.com/api/v3/coins/${desc}`);
-    data = await data.json();
+    let res = await fetch(`https://api.coingecko.com/api/v3/coins/${desc}`);
+    let data = await res.json();
 
     CACHEDES[desc] = {
       data: data.description.en,
