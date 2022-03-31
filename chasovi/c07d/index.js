@@ -1,6 +1,12 @@
 const { get } = require("./pkg/config");
 require("./pkg/db");
-const { login, register, refreshToken } = require("./handlers/accounts");
+const {
+  login,
+  register,
+  refreshToken,
+  forgotPassword,
+  resetPassword,
+} = require("./handlers/accounts");
 const {
   createBlog,
   deleteBlog,
@@ -17,13 +23,20 @@ const app = express();
 app.use(express.json());
 app.use(
   jwt({ secret: get("service").jwt_key, algorithms: ["HS256"] }).unless({
-    path: ["/api/v1/accounts/register", "/api/v1/accounts/login"],
+    path: [
+      "/api/v1/accounts/register",
+      "/api/v1/accounts/login",
+      "/api/v1/auth/forgot-password",
+      "/api/v1/auth/reset-password",
+    ],
   })
 );
 
 app.post("/api/v1/accounts/register", register);
 app.post("/api/v1/accounts/login", login);
 app.get("/api/v1/accounts/refresh-token", refreshToken);
+app.post("/api/v1/auth/forgot-password", forgotPassword);
+app.post("/api/v1/auth/reset-password", resetPassword);
 
 app.get("/api/v1/blogs", getAllBlogs);
 app.get("/api/v1/blogs/:id", getOneBlog);

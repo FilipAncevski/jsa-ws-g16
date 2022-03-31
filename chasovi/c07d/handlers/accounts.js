@@ -4,6 +4,7 @@ const {
   accountLogin,
   validate,
 } = require("../pkg/account/validate");
+const { sendMail } = require("../pkg/mailer");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { get } = require("../pkg/config");
@@ -83,8 +84,29 @@ const refreshToken = async (req, res) => {
   }
 };
 
+const forgotPassword = async (req, res) => {
+  try {
+    await sendMail(req.body.from, "FORGOT_PASSWORD", req.body.message);
+    return res.status(204).send("Mail send");
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send("Internal Server Error");
+  }
+};
+const resetPassword = async (req, res) => {
+  try {
+    await sendMail(req.body.from, "RESET_PASSWORD", req.body.message);
+    return res.status(204).send("Mail send");
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send("Internal Server Error");
+  }
+};
+
 module.exports = {
   register,
   login,
   refreshToken,
+  forgotPassword,
+  resetPassword,
 };
